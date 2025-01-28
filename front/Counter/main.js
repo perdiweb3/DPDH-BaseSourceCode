@@ -26,7 +26,7 @@ const connectMetamask = async () => {
 }
 
 const initializeContract = async () => {
-    const response = await ftch('../../artifacts/contracts/Counter.sol/Counter.json')
+    const response = await fetch('../../artifacts/contracts/Counter.sol/Counter.json')
     const data = await response.json()
     const signer = await connectMetamask()
     const counterContract = new ethers.Contract(counterContractAddress, data.abi, signer)
