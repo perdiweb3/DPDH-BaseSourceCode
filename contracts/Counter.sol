@@ -60,7 +60,7 @@ contract Counter {
 
     function increment() public{
         counter++;
-        emit Increment(1, msg.sender);
+        emit Increment(counter, msg.sender);
     }
 
     function decrement() public{

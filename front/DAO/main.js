@@ -71,6 +71,22 @@ const viewProposal = async() => {
     console.log(proposal.proposalId)
 }
 
+const listenEvents = async () => {
+    const {readContract} = await initializeLocalhostByPK()
+    const listener = await readContract.on("Increment", (_value, _by, event) => {
+        console.log(`Counter Increment -> Param1: ${_value}, Param2: ${_by}, Event: ${event}`)
+    })
+    console.log(listener)
+    console.log("Listener initialized!")
+}
+
+const removeEventListeners = async () => {
+    const {readContract} = await initializeLocalhostByPK()
+    const removeListener = await readContract.removeAllListeners("Increment")
+    console.log(removeListener)
+    console.log("Listener removed!")
+}
+
 
 
 const createProposalButton = document.getElementById("createProposal")
@@ -90,4 +106,13 @@ connectByMetamaskButton.addEventListener("click", async () => {
 })
 connectByPKButton.addEventListener("click", async () => {
     await initializeLocalhostByPK()
+})
+
+const listenEventsButton = document.getElementById("listenEvents")
+const removeListenerButton = document.getElementById("removeListener")
+listenEventsButton.addEventListener("click", async () => {
+    await listenEvents()
+})
+removeListenerButton.addEventListener("click", async () => {
+    await removeEventListeners()
 })

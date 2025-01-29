@@ -33,8 +33,8 @@ const {
         it("Should assign the correct values to fields", async function(){
             const {dao} = await loadFixture(deployDAOFixture)
             await dao.createProposal(title, desc)
-            const proposal = await dao.proposals(1)
-            expect(proposal.proposalId).to.equal(1)
+            const proposal = await dao.proposals(0)
+            expect(proposal.proposalId).to.equal(0)
             expect(proposal.title).to.equal(title)
             expect(proposal.description).to.equal(desc)
             expect(proposal.votesTrue).to.equal(0)

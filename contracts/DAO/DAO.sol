@@ -3,6 +3,7 @@ pragma solidity ^0.8.28;
 
 import {KeepCodingProposal} from "./interface/Proposal.sol";
 import {Counter} from "../Counter.sol";
+import "hardhat/console.sol";
 
 contract KeepCodignDAO is KeepCodingProposal, Counter{
 
@@ -15,13 +16,15 @@ contract KeepCodignDAO is KeepCodingProposal, Counter{
     }
 
     function createProposal(string memory _title, string memory _desc) public{
-        Proposal storage proposal = proposals[counter]; 
-        proposal.proposalId = counter;
+        uint256 externalCounter = getCounter();
+        console.log("External Counter: %s", externalCounter);
+        Proposal storage proposal = proposals[externalCounter]; 
+        proposal.proposalId = externalCounter;
         proposal.title = _title;
         proposal.description = _desc;
         proposal.active = true;
 
-        counter++;
+        increment();
     }
 
     function getProposal(uint256 _proposalId) public view returns (Proposal memory){
