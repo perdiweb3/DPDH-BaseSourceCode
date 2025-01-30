@@ -81,8 +81,8 @@ contract KeepCodingCoin is ERC20 {
         _mint(msg.sender, 1 * 10 ** numberOfDecimals);
     }
 
-    function transferCoin() public{
-
+    function transferCoin(address _receiver, uint256 _amount) public{
+        transfer(_receiver,_amount);
     }
 
     function freezeAddress() public{

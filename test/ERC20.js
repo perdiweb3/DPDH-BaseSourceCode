@@ -42,4 +42,16 @@ const {
             expect(await coin.balanceOf(otherAccount)).to.equal(1*10**decimals)
         })
     })
+
+    describe("Transfer", function(){
+
+        it("Balance after transfer should be correct", async function(){
+            const {coin,owner,otherAccount} = await loadFixture(deployERC20Fixture)
+            expect( await coin.balanceOf(owner)).to.equal(initialSupply)
+            expect( await coin.balanceOf(otherAccount)).to.equal(0)
+            await coin.transferCoin(otherAccount, 30 * 10**decimals)
+            expect( await coin.balanceOf(owner)).to.equal(20 * 10**decimals)
+            expect( await coin.balanceOf(otherAccount)).to.equal(30 * 10**decimals)
+        })
+    })
   })

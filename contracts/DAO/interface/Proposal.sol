@@ -11,5 +11,13 @@ interface KeepCodingProposal {
         uint256 votesTrue;
         uint256 votesFalse;
         bool active;
+
+        mapping(address => bool) voters;
+        address creator;
+
+        uint256 deadline;
+
+        uint256 reward;
+        address receiver;
     }
 }
